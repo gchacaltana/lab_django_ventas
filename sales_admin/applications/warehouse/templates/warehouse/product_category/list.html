@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if product_category_list %}
+    <h1 class="mt-5">Listado de Categorías de Producto</h1>
+    <ul class="mt-4 list-group">
+        {% for product_category in product_category_list %}
+            <li class="list-group-item">
+                <a href="{% url 'warehouse:product_category_detail' product_category.id %}">
+                    {{ product_category.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{%url 'warehouse:product_category_new' %}" class="btn btn-success mt-5"> Nuevo</a>
+    {% endif %}
+{% endblock %}

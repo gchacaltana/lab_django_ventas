@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row mt-5">
+        <div class="col-md-6 col-lg-6">
+            <h2>Buscar</h2>
+            <p class="mt-4">
+            <input type="text" class="form-control" id="search_id" maxlength="5" style="width: 60%;" placeholder="Ingrese un ID de categoría de producto" />
+            <button id="btn-search" class="btn btn-info mt-3">Buscar</button>
+            </p>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-6 col-lg-6">
+            <p id="output"></p>
+        </div>
+    </div>
+{% endblock %}

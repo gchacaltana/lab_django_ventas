@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+        <div class="row mt-5">
+            <div class="col-md-6 col-lg-6">
+
+                <h1>Nueva Categoría de Producto</h1>
+
+                <form class="post-form" action="{% url 'warehouse:product_category_save' %}" method="POST">
+                {% csrf_token %}
+
+                {# form.as_p #}
+
+                {% for field in form %}
+                    <p>{{ field.label_tag }}<br>
+                    {{ field }}
+                    {% if field.help_text %}
+                      <small class="text-muted">{{ field.help_text | safe }}</small>
+                    {% endif %}
+                    
+                    {% for error in field.errors %}
+                        <p class="text-danger">{{ error | safe }}</p>
+                    {% endfor %}
+                    </p>
+                {% endfor %}
+
+                <button type="submit" class="save btn btn-primary">Guardar</button> 
+                <a href="{%url 'warehouse:product_category_list' %}" class="btn btn-danger"> Regresar</a>
+                </form>
+            </div>
+        </div>
+{% endblock %}

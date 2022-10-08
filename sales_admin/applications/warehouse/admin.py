@@ -6,6 +6,7 @@ from applications.warehouse.models import UnitMeasure
 from applications.warehouse.models import ProductCategory
 from applications.warehouse.models import Product
 
+# link: https://docs.djangoproject.com/en/4.1/ref/contrib/admin/
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
