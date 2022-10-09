@@ -12,6 +12,6 @@
             </li>
         {% endfor %}
     </ul>
-    <a href="{%url 'warehouse:product_category_new' %}" class="btn btn-success mt-5"> Nuevo</a>
+    <a href="{% url 'warehouse:product_category_new' %}" class="btn btn-success mt-5"> Nuevo</a>
     {% endif %}
 {% endblock %}

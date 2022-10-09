@@ -121,6 +121,10 @@ class ProductCategory(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        self.percent_discount = 5
+        super(ProductCategory, self).save(*args, **kwargs)
+
     class Meta:
         db_table = "product_category"
         verbose_name = "Categoría de Producto"

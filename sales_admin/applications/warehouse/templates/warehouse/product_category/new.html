@@ -8,8 +8,6 @@
                 <form class="post-form" action="{% url 'warehouse:product_category_save' %}" method="POST">
                 {% csrf_token %}
 
-                {# form.as_p #}
-
                 {% for field in form %}
                     <p>{{ field.label_tag }}<br>
                     {{ field }}

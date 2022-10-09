@@ -7,8 +7,14 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-
 def index(request):
+    """
+    Vista Basada en Función.
+    Función que devuelve página home del módulo de almacén.
+    """
+    return render(request, 'warehouse/index.html')
+
+def product_category_list(request):
     """
     Función que devolverá la lista de categorías.
     Vista basada en función.
@@ -33,6 +39,9 @@ def detail(request, product_category_id):
 
 
 def new(request):
+    """
+    Función que devuelve el formulario para agregar una nueva categoría de producto
+    """
     form = ProductCategoryForm()
     return render(request, "warehouse/product_category/new.html", {
         'form': form
@@ -40,6 +49,9 @@ def new(request):
 
 
 def search(request):
+    """
+    Función para devolver template de búsqueda de categoría de producto.
+    """
     return render(request, "warehouse/product_category/search.html", {})
 
 
@@ -47,7 +59,7 @@ def search(request):
 @csrf_protect
 def save(request):
     """
-    Función para registrar los datos del formulario
+    Función para registrar los datos del formulario en la base de datos.
     """
     print(request.POST)
     form = ProductCategoryForm(request.POST)
@@ -62,8 +74,6 @@ def save(request):
             return render(request, 'warehouse/product_category/new.html', {'form': form})
             # return HttpResponse("Categoría creada con éxito")
         except Exception as e:
-            return HttpResponse(e)
-        except ValueError as e:
             return HttpResponse(e)
     else:
         print(form.errors)

@@ -3,11 +3,16 @@ from .models import ProductCategory
 from django.core import validators
 
 class ProductCategoryForm(forms.ModelForm):
+    """
+    Formulario para el Modelo ProductCategory.
+
+    Creamos formulario con tres inputs.
+    """
 
     code = forms.CharField(
-        # label = "Código",
+        #label = "Código Cat",
         label=ProductCategory._meta.get_field('code').verbose_name,
-        max_length=ProductCategory._meta.get_field('code').max_length,
+        max_length= ProductCategory._meta.get_field('code').max_length,
         help_text=('Escriba el código de categoría'),
         widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'code', 'placeholder': 'Código'}))
 
@@ -17,7 +22,7 @@ class ProductCategoryForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'name'}))
 
     percent_discount = forms.CharField(
-        required=False,
+        required=True,
         validators = [validators.MaxValueValidator(10)],
         label=ProductCategory._meta.get_field('percent_discount').verbose_name,
         max_length=ProductCategory._meta.get_field('percent_discount').max_length,
