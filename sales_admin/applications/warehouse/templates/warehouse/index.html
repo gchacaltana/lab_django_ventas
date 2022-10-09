@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="mt-5">Módulo de Almacén</h1>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card w-100">
+            <div class="card-body">
+              <h5 class="card-title">Productos</h5>
+              <p class="card-text">Aquí encontrarás los productos que tiene la compañía.</p>
+              <a href="#" class="btn btn-primary">Listado</a>
+              <a href="#" class="btn btn-success">Nuevo</a>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card w-100">
+            <div class="card-body">
+              <h5 class="card-title">Categorías de Producto</h5>
+              <p class="card-text">Aquí encontrarás las categorias de productos que tiene la compañía.</p>
+              <a href="{% url 'warehouse:product_category_list' %}" class="btn btn-primary">Listado</a>
+              <a href="{% url 'warehouse:product_category_new' %}" class="btn btn-success">Nuevo</a>
+            </div>
+          </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-md-6">
+        <div class="card w-100">
+            <div class="card-body">
+              <h5 class="card-title">Unidades de Medida</h5>
+              <p class="card-text">Aquí encontrarás las unidades de medida de los productos.</p>
+              <a href="#" class="btn btn-primary">Listado</a>
+              <a href="#" class="btn btn-success">Nuevo</a>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card w-100">
+            <div class="card-body">
+              <h5 class="card-title">Categoría de Unidades de Medida</h5>
+              <p class="card-text">Aquí encontrarás la categorización de las unidades de medida.</p>
+              <a href="#" class="btn btn-primary">Listado</a>
+              <a href="#" class="btn btn-success">Nuevo</a>
+            </div>
+          </div>
+    </div>
+</div>
+
+  
+{% endblock %}
