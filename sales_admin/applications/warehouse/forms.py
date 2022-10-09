@@ -1,6 +1,5 @@
 from django import forms
 from .models import ProductCategory
-from django.core import validators
 
 class ProductCategoryForm(forms.ModelForm):
     """
@@ -23,10 +22,9 @@ class ProductCategoryForm(forms.ModelForm):
 
     percent_discount = forms.CharField(
         required=True,
-        validators = [validators.MaxValueValidator(10)],
         label=ProductCategory._meta.get_field('percent_discount').verbose_name,
         max_length=ProductCategory._meta.get_field('percent_discount').max_length,
-        widget=forms.NumberInput(attrs={'min':0, 'max':10, 'class': 'form-control', 'id': 'name'}))
+        widget=forms.NumberInput(attrs={'min':0, 'max':10, 'class': 'form-control', 'id': 'percent_discount'}))
 
     class Meta:
         model = ProductCategory

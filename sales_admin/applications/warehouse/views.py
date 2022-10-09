@@ -61,16 +61,20 @@ def save(request):
     """
     Función para registrar los datos del formulario en la base de datos.
     """
-    print(request.POST)
+    #print(request.POST)
     form = ProductCategoryForm(request.POST)
     if form.is_valid():
         try:
+            # Alternativa 1
             code = form.cleaned_data.get('code')
             name = form.cleaned_data.get('name')
-            percent_discount = form.cleaned_data.get('percent_discount')
-            pc = ProductCategory(code=code, name=name,
-                                 percent_discount=percent_discount)
+            percent_discount = int(form.cleaned_data.get('percent_discount'))
+            pc = ProductCategory(code=code, name=name,percent_discount=percent_discount)
             pc.save()
+
+            # Alternativa 2
+            #form.save()
+
             return render(request, 'warehouse/product_category/new.html', {'form': form})
             # return HttpResponse("Categoría creada con éxito")
         except Exception as e:

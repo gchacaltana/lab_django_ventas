@@ -122,7 +122,7 @@ class ProductCategory(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.percent_discount = 5
+        #self.percent_discount = 5
         super(ProductCategory, self).save(*args, **kwargs)
 
     class Meta:
