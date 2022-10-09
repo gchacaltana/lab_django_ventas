@@ -12,7 +12,64 @@
 
     <div class="row mt-5">
         <div class="col-md-6 col-lg-6">
-            <p id="output"></p>
+            <div id="output"></div>
         </div>
     </div>
+
+    <script>
+        document.getElementById("btn-search").addEventListener("click", function(event) {
+            event.preventDefault();
+
+            const $inputId = document.getElementById("search_id");
+            const id = Math.abs(parseInt($inputId.value));
+            const $containerOutput = document.getElementById("output");
+
+            if (Number.isInteger(id) && id>0) {
+
+                const URL_API = "http://localhost:8000/api";
+
+                const endpoint = `${URL_API}/warehouse/product-categories/${id}`;
+
+                fetch(endpoint, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(async(api_response) => {
+                    const response = await api_response;
+                    //console.log(response);
+                    if (response.status === 404) {
+                        $containerOutput.innerHTML = "No se encontraron registros.";
+                    }
+                    if (response.status === 200) {
+                        return response.json();
+                    }
+                    return undefined;
+                })
+                .then(async(body_response) => {
+                    const data = await body_response;
+                    if (data !== undefined) {
+                        output = `
+                        <h2>Categoría de Producto</h2>
+                        <ul class="list-group mb-3 mt-4">
+                            <li class="list-group-item">Código: ${data.code}</li>
+                            <li class="list-group-item">Nombre: ${data.name}</li>
+                            <li class="list-group-item">Descuento: ${data.percent_discount} %</li>
+                        </ul>
+                        `
+                        $containerOutput.innerHTML = output;
+                    }
+                })
+                .catch((error) => {
+                    console.log(`Error en la obtención de datos: ${error}`);
+                    $containerOutput.innerHTML = "Error en la obtención de datos";
+                });
+
+            } else {
+                $inputId.value = "";
+                $inputId.focus();
+            }
+        });
+    </script>
+
 {% endblock %}
